@@ -1,21 +1,85 @@
 # hslabs
-# Creating NFS Storage Class on Kubernetes
+# NFS-Client-Provisioner Setup Guide
 
-This repository provides instructions and configuration files for setting up an NFS Storage Class on a Kubernetes cluster.
+This guide walks you through the process of adding an NFS client provisioner to your Kubernetes cluster.
+
+## Table of Contents
+- [Prerequisites](#prerequisites)
+- [Add Helm Repository](#add-helm-repository)
+- [Install the Chart](#install-the-chart)
+- [Verify Storage Class](#verify-storage-class)
+- [Set Default Storage Class](#set-default-storage-class)
+
+---
 
 ## Prerequisites
 
-Before you begin, ensure you have the following prerequisites in place:
+- Kubernetes cluster up and running
+- Helm installed
+- `kubectl` installed and configured to interact with your cluster
 
-- A running Kubernetes cluster
-- Access to a network-attached storage (NAS) server that provides NFS shares
-- `kubectl` command-line tool configured to connect to your cluster
+---
 
-## Steps
+## Add Helm Repository
 
-Follow these steps to create an NFS Storage Class:
+Firstly, add the required Helm repository to fetch the nfs-client-provisioner charts.
 
-1. Clone this repository to your local machine:
+Open your terminal and execute the following command:
 
-   ```bash
-   git clone https://github.com/yourusername/kubernetes-nfs-storage-class.git
+\`\`\`bash
+helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
+\`\`\`
+
+For more information, check the project [here on GitHub](https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner).
+
+---
+
+## Install the Chart
+
+Run the following command to install the nfs-client-provisioner. Replace the `nfs.server` and `nfs.path` with your specific settings.
+
+\`\`\`bash
+helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs-subdir-external-provisioner \
+    --set nfs.server=192.168.178.140 \
+    --set nfs.path=/volume1/CLOUDNATIVE1
+\`\`\`
+
+---
+
+## Verify Storage Class
+
+Confirm that the storage class has been added by running the following command:
+
+\`\`\`bash
+kubectl get storageclass
+\`\`\`
+
+Note that the added storage class will not be the default initially.
+
+---
+
+## Set Default Storage Class
+
+To set the nfs-client-provisioner storage class as the default, first change the current default class to non-default.
+
+\`\`\`bash
+kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
+\`\`\`
+
+Now, set the nfs-client-provisioner as the default class.
+
+\`\`\`bash
+kubectl patch storageclass nfs-client -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+\`\`\`
+
+Verify that the changes are applied by running:
+
+\`\`\`bash
+kubectl get storageclass
+\`\`\`
+
+You should now see `(default)` after the nfs-client storage class.
+
+---
+
+Feel free to contribute to this guide by submitting a pull request.
