@@ -14,6 +14,8 @@ This guide walks you through the process of adding an NFS client provisioner to 
 
 ## Prerequisites
 
+![image](https://github.com/HarishankarYellapragada/hslabs/assets/14257200/eb8f4dcf-9ac5-463c-a569-eafae73f6f41)
+
 - Kubernetes cluster up and running
 - Helm installed
 - `kubectl` installed and configured to interact with your cluster
