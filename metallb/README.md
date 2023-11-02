@@ -80,25 +80,9 @@ helm install metallb metallb/metallb
 
 ## Configuring IP Address Pool
 
-Create a file named `ipaddresspool_metallb.yaml` and add the following content:
+Create a file named `layer-two-config.yaml` and copy the content for the file. 
 
-```yaml
----
-apiVersion: metallb.io/v1beta1
-kind: IPAddressPool
-metadata:
-  name: first-pool
-  namespace: metallb-system
-spec:
-  addresses:
-  - 10.166.70.1-10.166.70.127 # <-- Add IP address range here
----
-apiVersion: metallb.io/v1beta1
-kind: L2Advertisement
-metadata:
-  name: example
-  namespace: metallb-system
-```
+Note: Just change the IP range as you like
 
 ## Apply Configuration
 
