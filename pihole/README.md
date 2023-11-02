@@ -1,4 +1,3 @@
-```markdown
 # Pi-hole Kubernetes Setup
 
 This repository contains the necessary Kubernetes manifests and Helm configurations to deploy Pi-hole in your cluster. 
