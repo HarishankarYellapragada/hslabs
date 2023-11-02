@@ -1,4 +1,3 @@
-# hslabs
 # NFS-Client-Provisioner Setup Guide
 
 This guide walks you through the process of adding an NFS client provisioner to your Kubernetes cluster.
