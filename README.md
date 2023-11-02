@@ -20,7 +20,7 @@ This repository serves as a one-stop guide for Kubernetes deployments. Whether y
 ## Deployments
 
 ### NFS Storage Class using Helm
-Deploying an NFS storage class to manage dynamic provisioning of storage volumes. Follow the [NFS Guide](./NFS-Guide.md) for detailed instructions.
+Deploying an NFS storage class to manage dynamic provisioning of storage volumes. Follow the [NFS Guide]([./NFS-Guide.md](https://github.com/HarishankarYellapragada/hslabs/tree/main/nfs_storageclass)) for detailed instructions.
 
 ### MetalLB
 Learn how to set up MetalLB for your bare-metal Kubernetes cluster, allowing you to assign LoadBalancer services an external IP address. Refer to the [MetalLB Guide](./MetalLB-Guide.md) for more information.
