@@ -47,4 +47,3 @@ After installation, you can access the Pi-hole web interface via the external IP
 
 ## Conclusion
 You now have Pi-hole running in your Kubernetes cluster, utilizing MetalLB for LoadBalancing and with persistent storage configured. Enjoy your network-wide ad-blocking!
-```
