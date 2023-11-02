@@ -26,9 +26,9 @@ Firstly, add the required Helm repository to fetch the nfs-client-provisioner ch
 
 Open your terminal and execute the following command:
 
-\`\`\`bash
+```
 helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
-\`\`\`
+```
 
 For more information, check the project [here on GitHub](https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner).
 
