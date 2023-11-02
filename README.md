@@ -1,87 +1,32 @@
 # hslabs
-# NFS-Client-Provisioner Setup Guide
 
-This guide walks you through the process of adding an NFS client provisioner to your Kubernetes cluster.
+# Kubernetes Deployment Guide Repository
+
+This repository aims to provide a comprehensive guide to various Kubernetes deployments. It covers a range of topics including setting up NFS storage class using Helm, configuring MetalLB, deploying Pi-hole via Helm, and much more.
 
 ## Table of Contents
-- [Prerequisites](#prerequisites)
-- [Add Helm Repository](#add-helm-repository)
-- [Install the Chart](#install-the-chart)
-- [Verify Storage Class](#verify-storage-class)
-- [Set Default Storage Class](#set-default-storage-class)
+1. [Introduction](#introduction)
+2. [Deployments](#deployments)
+    - [NFS Storage Class using Helm](#nfs-storage-class-using-helm)
+    - [MetalLB](#metallb)
+    - [Pi-hole using Helm](#pi-hole-using-helm)
+    - [And Many More](#and-many-more)
+3. [Contribution](#contribution)
+4. [License](#license)
 
----
+## Introduction
+This repository serves as a one-stop guide for Kubernetes deployments. Whether you are a beginner or an experienced developer, these guides are designed to assist you in deploying applications and services onto your Kubernetes clusters.
 
-## Prerequisites
+## Deployments
 
-![image](https://github.com/HarishankarYellapragada/hslabs/assets/14257200/eb8f4dcf-9ac5-463c-a569-eafae73f6f41)
+### NFS Storage Class using Helm
+Deploying an NFS storage class to manage dynamic provisioning of storage volumes. Follow the [NFS Guide](./NFS-Guide.md) for detailed instructions.
 
-- Kubernetes cluster up and running
-- Helm installed
-- `kubectl` installed and configured to interact with your cluster
+### MetalLB
+Learn how to set up MetalLB for your bare-metal Kubernetes cluster, allowing you to assign LoadBalancer services an external IP address. Refer to the [MetalLB Guide](./MetalLB-Guide.md) for more information.
 
----
+### Pi-hole using Helm
+Deploy Pi-hole to block ads and provide a safer and faster browsing experience for your network. Check out the [Pi-hole Guide](./PiHole-Guide.md) for step-by-step instructions.
 
-## Add Helm Repository
-
-Firstly, add the required Helm repository to fetch the nfs-client-provisioner charts.
-
-Open your terminal and execute the following command:
-
-```
-helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
-```
-
-For more information, check the project [here on GitHub](https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner).
-
----
-
-## Install the Chart
-
-Run the following command to install the nfs-client-provisioner. Replace the `nfs.server` and `nfs.path` with your specific settings.
-
-```
-helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs-subdir-external-provisioner \
-    --set nfs.server=192.168.178.140 \
-    --set nfs.path=/volume1/CLOUDNATIVE1
-```
-
----
-
-## Verify Storage Class
-
-Confirm that the storage class has been added by running the following command:
-
-```
-kubectl get storageclass
-```
-
-Note that the added storage class will not be the default initially.
-
----
-
-## Set Default Storage Class
-
-To set the nfs-client-provisioner storage class as the default, first change the current default class to non-default.
-
-```
-kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
-```
-
-Now, set the nfs-client-provisioner as the default class.
-
-```
-kubectl patch storageclass nfs-client -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
-```
-
-Verify that the changes are applied by running:
-
-```
-kubectl get storageclass
-```
-
-You should now see `(default)` after the nfs-client storage class.
-
----
-
-Feel free to contribute to this guide by submitting a pull request.
+### And Many More
+This repository is continually updated with guides on various Kubernetes deployments. Stay tuned!
