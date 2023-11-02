@@ -80,7 +80,7 @@ helm install metallb metallb/metallb
 
 ## Configuring IP Address Pool
 
-Create a file named `[layer-two-config.yaml](https://github.com/HarishankarYellapragada/hslabs/blob/main/metallb/layer-two-config.yaml)` and copy the content for the file. 
+Create a file named [layer-two-config.yaml](https://github.com/HarishankarYellapragada/hslabs/blob/main/metallb/layer-two-config.yaml) and copy the content for the file. 
 
 Note: Just change the IP range as you like
 
