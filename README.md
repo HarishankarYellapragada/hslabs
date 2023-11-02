@@ -38,11 +38,11 @@ For more information, check the project [here on GitHub](https://github.com/kube
 
 Run the following command to install the nfs-client-provisioner. Replace the `nfs.server` and `nfs.path` with your specific settings.
 
-\`\`\`bash
+```
 helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs-subdir-external-provisioner \
     --set nfs.server=192.168.178.140 \
     --set nfs.path=/volume1/CLOUDNATIVE1
-\`\`\`
+```
 
 ---
 
@@ -50,9 +50,9 @@ helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs
 
 Confirm that the storage class has been added by running the following command:
 
-\`\`\`bash
+```
 kubectl get storageclass
-\`\`\`
+```
 
 Note that the added storage class will not be the default initially.
 
@@ -62,21 +62,21 @@ Note that the added storage class will not be the default initially.
 
 To set the nfs-client-provisioner storage class as the default, first change the current default class to non-default.
 
-\`\`\`bash
+```
 kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
-\`\`\`
+```
 
 Now, set the nfs-client-provisioner as the default class.
 
-\`\`\`bash
+```
 kubectl patch storageclass nfs-client -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
-\`\`\`
+```
 
 Verify that the changes are applied by running:
 
-\`\`\`bash
+```
 kubectl get storageclass
-\`\`\`
+```
 
 You should now see `(default)` after the nfs-client storage class.
 
