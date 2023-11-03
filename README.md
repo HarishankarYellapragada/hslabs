@@ -1,4 +1,4 @@
-# hslabs
+# HSLABS
 
 # Kubernetes Deployment Guide Repository
 
