@@ -81,6 +81,22 @@ kubectl get storageclass
 
 You should now see `(default)` after the nfs-client storage class.
 
+
+## If NFS Storage mount is disconnected
+```
+esxcli storage nfs list
+Volume Name  Host       Share                Vmknic  Accessible  Mounted  Connections  Read-Only   isPE  Hardware Acceleration
+-----------  ---------  -------------------  ------  ----------  -------  -----------  ---------  -----  ---------------------
+Synology     x.x.x.x    /volume1/folder       None         false    false            1      false  false  Unknown
+
 ---
+```
+Use these two Commands 
+```
+esxcli storage nfs remove -v Synology
+esxcli storage nfs add -H x.x.x.x -s /volume1/folder -v Synology
+```
+
+
 
 Feel free to contribute to this guide by submitting a pull request.
